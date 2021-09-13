@@ -1,0 +1,136 @@
+definitions:
+  gorm.DeletedAt:
+    properties:
+      time:
+        type: string
+      valid:
+        description: Valid is true if Time is not NULL
+        type: boolean
+    type: object
+  model.Note:
+    properties:
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      id:
+        description: Explicitly specify the type to be uuid
+        type: string
+      sub_title:
+        type: string
+      text:
+        type: string
+      title:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/note:
+    get:
+      consumes:
+      - application/json
+      description: Get all existing notes
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Note'
+            type: array
+      tags:
+      - Notes
+    post:
+      consumes:
+      - application/json
+      description: Create a Note
+      parameters:
+      - description: Title
+        in: body
+        name: title
+        required: true
+        schema:
+          type: string
+      - description: SubTitle
+        in: body
+        name: sub_title
+        required: true
+        schema:
+          type: string
+      - description: Text
+        in: body
+        name: text
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Note'
+      tags:
+      - Notes
+  /api/note/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a note by ID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      tags:
+      - Note
+    get:
+      consumes:
+      - application/json
+      description: Get one note by ID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Note'
+      tags:
+      - Note
+    post:
+      consumes:
+      - application/json
+      description: Update a Note by ID
+      parameters:
+      - description: Title
+        in: body
+        name: title
+        required: true
+        schema:
+          type: string
+      - description: SubTitle
+        in: body
+        name: sub_title
+        required: true
+        schema:
+          type: string
+      - description: Text
+        in: body
+        name: text
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Note'
+      tags:
+      - Notes
+swagger: "2.0"
