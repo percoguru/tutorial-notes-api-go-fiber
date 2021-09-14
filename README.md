@@ -3,7 +3,7 @@
 
 Go, Fiber, GORM, Postgres
 
-Find the full article to build this API here - 
+Find the full article to build this API here - https://dev.to/percoguru/getting-started-with-apis-in-golang-feat-fiber-and-gorm-2n34
 
 ## Get It Started -
 
